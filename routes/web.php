@@ -1,22 +1,19 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
+// - Rutas con controladores
+Route::get('/',             HomeController::class);
+Route::get('/posts',        [PostController::class, 'index']);
+Route::get('/posts/create', [PostController::class, 'create']);
+Route::get('/posts/{post}', [PostController::class, 'show']);
+
+
+/* rutas directas
 Route::get('/', function () {
-    #Return view('welcome');
+    # Return view('welcome'); // return view
     return "Hello World";
 });
-
-Route::get('/posts', function () {
-    return "List of posts";
-});
-
-Route::get('/posts/create', function () {
-    return "form to create a post";
-});
-
-Route::get('/posts/{post}', function ($post) {
-    return "post with id: " . $post;
-});
-
-
+*/
