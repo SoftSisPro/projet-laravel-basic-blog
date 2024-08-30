@@ -12,6 +12,14 @@ class Post extends Model
 
     protected $table = 'posts';
 
+    protected function casts():array
+    {
+        return [
+            'published_at' => 'datetime',
+            'is_active' => 'boolean'
+        ];
+    }
+
     /**
      * Setear los dato de la tabla posts
      *
