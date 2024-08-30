@@ -27,7 +27,7 @@ Route::get('prueba', function (){
     /* //- Crear un nuevo post desde el modelo en la ruta
     $post = new Post();
 
-    $post->title = 'Mi tercer post ';
+    $post->title = 'NUEVO posT CreaDo y TransforMado';
     $post->content = 'Contenido de mi tercer post';
     $post->categoria = 'categoria 3';
 
@@ -35,7 +35,10 @@ Route::get('prueba', function (){
 
     return $post; */
 
-    /* //$post  = Post::find(2); // Buscar un post por id
+    $post  = Post::find(4); // Buscar un post por id
+    return $post;
+    /*
+
 
     $post = Post::where('title', 'Mi primer post')->first(); // Buscar un post por titulo
     //- Actualizar un post en categoria
