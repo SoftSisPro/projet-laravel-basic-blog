@@ -1,8 +1,8 @@
 <x-app-layout>
     <h1>Editar Post</h1>
-    <a href="/posts">Volver a los Posts</a>
+    <a href="{{ route('posts.show',$post) }}">Volver al Post</a>
     <br><br>
-    <form action="/posts/{{$post->id}}" method="POST">
+    <form action="{{ route('posts.update',$post) }}" method="POST">
         @csrf
         @method("PUT")
         <label for="title">Titulo</label>
