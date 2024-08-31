@@ -1,15 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home Laravel 11 | Show Post</title>
-</head>
-<body>
-    <h1>Aqui me mostrare el {{ $post }}</h1>
-    @if (true)
-        <p>Esto es verdadero</p>
-    @endif
-</body>
-</html>
+<x-app-layout>
+    <a href="/posts">Volver a los post</a>
+    <br>
+    <h1>{{ $post->title }}</h1>
+    <p>Categoria: <strong>{{ $post->category }}</strong></p>
+    <p>{{ $post->content }}</p>
+    <br>
+    <a href="/posts/{{$post->id}}/edit" >Editar Post</a>
+    <br>
+    <br>
+    {{-- Boton Eliminar --}}
+    <form action="/posts/{{$post->id}}" method="post">
+        @csrf
+        @method('delete')
+        <button type="submit">Eliminar Post</button>
+    </form>
+</x-app-layout>
