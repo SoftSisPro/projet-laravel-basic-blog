@@ -33,10 +33,11 @@ class DatabaseSeeder extends Seeder
         $post->save();
         */
 
+        Post::factory(10)->create();
+        
         //- LLamar a los otros seeders
         $this->call([
             UserSeeder::class,
-            PostSeeder::class,
         ]);
     }
 }
