@@ -28,6 +28,8 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
+        Post::create($request->all());
+        /*
         //dd($request->all());
         $post = new Post();
 
@@ -38,6 +40,7 @@ class PostController extends Controller
 
         $post->save();
         //return redirect('/posts'); // Redirecciona a la ruta anterior
+        */
         return redirect()->route('posts.index');
     }
 
@@ -49,15 +52,16 @@ class PostController extends Controller
 
     public function update(Request $request, Post $post)
     {
+        $post->update($request->all()); // Actualiza todos los campos
+        /*
         //$post = Post::find($postid); // No es necesario
-
         $post->title = $request->title;
         $post->slug = $request->slug;
         $post->content = $request->content;
         $post->category = $request->category;
-
         $post->save();
         //return redirect('/posts/'.$post); // Redirecciona a la ruta anterior
+        */
         return redirect()->route('posts.show', $post);
     }
 
