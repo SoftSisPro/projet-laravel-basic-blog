@@ -20,9 +20,9 @@ class PostController extends Controller
         return view('posts.create');
     }
 
-    public function show($post)
+    public function show(Post $post)
     {
-        $post = Post::find($post);
+        //$post = Post::find($post);
         return view('posts.show', compact('post'));
     }
 
@@ -32,36 +32,40 @@ class PostController extends Controller
         $post = new Post();
 
         $post->title = $request->title;
+        $post->slug = $request->slug;
         $post->content = $request->content;
         $post->category = $request->category;
 
         $post->save();
-        return redirect('/posts');
-
+        //return redirect('/posts'); // Redirecciona a la ruta anterior
+        return redirect()->route('posts.index');
     }
 
-    public function edit($post)
+    public function edit(Post $post)
     {
-        $post = Post::find($post);
+        //$post = Post::find($post);
         return view('posts.edit', compact('post'));
     }
 
-    public function update(Request $request, $postid)
+    public function update(Request $request, Post $post)
     {
-        $post = Post::find($postid);
+        //$post = Post::find($postid); // No es necesario
 
         $post->title = $request->title;
+        $post->slug = $request->slug;
         $post->content = $request->content;
         $post->category = $request->category;
 
         $post->save();
-        return redirect('/posts/'.$postid);
+        //return redirect('/posts/'.$post); // Redirecciona a la ruta anterior
+        return redirect()->route('posts.show', $post);
     }
 
-    public function destroy($post)
+    public function destroy(Post $post)
     {
-        $post = Post::find($post);
+        //$post = Post::find($post); // No es necesario
         $post->delete();
-        return redirect('/posts');
+        //return redirect('/posts'); // Redirecciona a la ruta anterior
+        return redirect()->route('posts.index');
     }
 }

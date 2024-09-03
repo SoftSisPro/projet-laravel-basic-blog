@@ -8,6 +8,9 @@
         <label for="title">Titulo</label>
         <input type="text" name="title" id="title" value="{{$post->title}}" required>
         <br><br>
+        <label for="title">Slug</label>
+        <input type="text" name="slug" id="slug" value="{{$post->slug}}" required>
+        <br><br>
         <label for="category">Categoria</label>
         <input type="text" name="category" id="category" value="{{$post->category}}" required>
         <br><br>
