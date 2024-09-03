@@ -28,7 +28,15 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required|min:5|max:255',
+            'slug' => "required|unique:posts",
+            'content' => 'required',
+            'category' => 'required',
+        ]);
+
         Post::create($request->all());
+        return redirect()->route('posts.index');
         /*
         //dd($request->all());
         $post = new Post();
@@ -41,7 +49,7 @@ class PostController extends Controller
         $post->save();
         //return redirect('/posts'); // Redirecciona a la ruta anterior
         */
-        return redirect()->route('posts.index');
+
     }
 
     public function edit(Post $post)
@@ -52,7 +60,15 @@ class PostController extends Controller
 
     public function update(Request $request, Post $post)
     {
+        $request->validate([
+            'title' => 'required|min:5|max:255',
+            'slug' => "required|unique:posts,slug,{$post->id}",
+            'content' => 'required',
+            'category' => 'required',
+        ]);
+
         $post->update($request->all()); // Actualiza todos los campos
+        return redirect()->route('posts.show', $post);
         /*
         //$post = Post::find($postid); // No es necesario
         $post->title = $request->title;
@@ -62,7 +78,6 @@ class PostController extends Controller
         $post->save();
         //return redirect('/posts/'.$post); // Redirecciona a la ruta anterior
         */
-        return redirect()->route('posts.show', $post);
     }
 
     public function destroy(Post $post)
