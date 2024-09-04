@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
+use App\Models\Comment;
 use App\Models\Phone;
 use App\Models\Post;
 use App\Models\User;
@@ -41,25 +42,37 @@ Route::resource('articulos', PostController::class)
 //- Ruta para prueba de relaciones
 Route::get('/prueba', function ()
 {
+## RELACION DE UNO A MUCHOS
+    /*//- Creamos un comentarios del post 1
+    Comment::create([
+        'content' => 'Comentario 2',
+        'post_id' => 1
+    ]);
+    return "Comentario creado";
+    */
+
+    $post = Post::where('id', 1)->with('comments')->first();
+    //return $post;
+
+    $comment = Comment::where('post_id', 1)->with('post')->first();
+    return $comment;
+
+## RELACION DE UNO A UNO
+
     /* Creamos un telefono al usuario
     $phone = Phone::create([
         'number' => '1234567890',
         'user_id' => 1
     ]);
-
     return "Teléfono creado";
     */
 
     //- Trae el usuario con el telefono
-    $user = User::where('id', 1)
-        ->with('phone')
-        ->first();
-
+    //$user = User::where('id', 1)->with('phone')->first();
     //return $user;
 
-    $phone = Phone::where('user_id', 1)
-        ->with('user')
-        ->first();
+    //$phone = Phone::where('user_id', 1)->with('user')->first();
+    //return $phone;
 
-    return $phone;
+
 });
