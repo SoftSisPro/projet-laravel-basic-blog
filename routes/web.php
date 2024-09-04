@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Models\Comment;
 use App\Models\Phone;
 use App\Models\Post;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -42,20 +43,38 @@ Route::resource('articulos', PostController::class)
 //- Ruta para prueba de relaciones
 Route::get('/prueba', function ()
 {
+## RELACION DE MUCHOS A MUCHOS
+
+    //- Asignar un rol a un usuario
+    /*
+    $user = User::find(1);
+    $role = Role::find(1);
+    $user->roles()->attach($role); ## Agrega un registro a la tabla pivote
+    return "Registro agregado";
+    */
+
+    //- Traer los roles de un usuario
+    $user = User::where('id', 1)->with('roles')->first();
+    $roles = $user;
+
+    return $roles;
+
 ## RELACION DE UNO A MUCHOS
-    /*//- Creamos un comentarios del post 1
+    /*
+    //- Creamos un comentarios del post 1
     Comment::create([
         'content' => 'Comentario 2',
         'post_id' => 1
     ]);
     return "Comentario creado";
-    */
+
 
     $post = Post::where('id', 1)->with('comments')->first();
     //return $post;
 
     $comment = Comment::where('post_id', 1)->with('post')->first();
     return $comment;
+    */
 
 ## RELACION DE UNO A UNO
 

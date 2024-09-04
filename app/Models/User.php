@@ -57,4 +57,12 @@ class User extends Authenticatable
         //- Si no usas convenciones usa la fornea y la primaria
         //return $this->hasOne(Phone::class, 'user_id', 'id');
     }
+
+    /**
+     * The roles that belong to the user.
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
 }
