@@ -1,5 +1,6 @@
 <x-app-layout>
     <h1>Editar Post</h1>
+
     <a href="{{ route('posts.show',$post) }}">Volver al Post</a>
     <br><br>
     <form action="{{ route('posts.update',$post) }}" method="POST">
@@ -29,5 +30,7 @@
         </textarea>
         <br><br>
         <button type="submit">Actualizar Post</button>
+        <br><br>
+        {{ __('All rights reserved.') }}
     </form>
 </x-app-layout>

@@ -34,6 +34,7 @@ class StorePostRequest extends FormRequest
      *
      * @return array<string, string>
      */
+    /*
     public function messages(): array
     {
         return [
@@ -46,7 +47,8 @@ class StorePostRequest extends FormRequest
             'category.required' => 'La :attribute es requerida',
         ];
     }
-
+    */
+    
     /**
      * Get custom attributes for validator errors.
      *
