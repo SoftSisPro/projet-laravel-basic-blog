@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
+use App\Models\Phone;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 // - Rutas con funciones anónimas
@@ -35,3 +37,29 @@ Route::resource('articulos', PostController::class)
     ->parameters(['posts' => 'post'])
     ->names('posts');
 */
+
+//- Ruta para prueba de relaciones
+Route::get('/prueba', function ()
+{
+    /* Creamos un telefono al usuario
+    $phone = Phone::create([
+        'number' => '1234567890',
+        'user_id' => 1
+    ]);
+
+    return "Teléfono creado";
+    */
+
+    //- Trae el usuario con el telefono
+    $user = User::where('id', 1)
+        ->with('phone')
+        ->first();
+
+    //return $user;
+
+    $phone = Phone::where('user_id', 1)
+        ->with('user')
+        ->first();
+
+    return $phone;
+});

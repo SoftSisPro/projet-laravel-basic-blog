@@ -44,4 +44,17 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Get the phone record associated with the user.
+     */
+    public function phone()
+    {
+        //- Primaria: id
+        //- Foránea: user_id
+        return $this->hasOne(Phone::class);
+
+        //- Si no usas convenciones usa la fornea y la primaria
+        //return $this->hasOne(Phone::class, 'user_id', 'id');
+    }
 }
